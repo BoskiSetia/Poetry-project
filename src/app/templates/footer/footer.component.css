@@ -1,0 +1,14 @@
+.bg-light{
+    background-color: #d6d1d1;;
+    height: 30px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+.text-center{
+    margin-top: 5px;
+    text-align: center;
+}

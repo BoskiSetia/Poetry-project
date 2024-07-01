@@ -1,0 +1,56 @@
+<!-- Form field to select type and serach term -->
+<!-- Used accessibility features eg: cdkTrapfocus -->
+<div class="search-form" [formGroup]="myGroup" cdkTrapFocus>
+    <mat-form-field class="type">
+        <mat-label aria-label="Select search type">Select search type</mat-label>
+        <cdk-virtual-scroll-viewport class="list-container list-group" [itemSize]="52.5">
+            <div *cdkVirtualFor="let searchTermType of termsList;" class="list-group-item">
+                {{searchTermType}}
+            </div>
+        </cdk-virtual-scroll-viewport>
+        <mat-select placeholder="" [formControl]="searchType" [(value)]="selectedTerms" multiple>
+            @for(searchTermType of termsList; track searchTermType){
+            <mat-option [value]="searchTermType">{{searchTermType}}</mat-option>
+            <div class="term">
+                <mat-label aria-label="Enter search term">Enter search term</mat-label>
+                <input matInput placeholder="" (keydown)="$event.stopPropagation()" [formControlName]="searchTermType">
+            </div>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-icon-button class="primary" aria-label="Search" [disabled]="!searchType.value" (click)="onSearch()"
+        matTooltip="Click to Search"><mat-icon (click)="onSearch()">search</mat-icon></button>
+</div>
+
+@if(errorMessage){
+<div class="error-message">{{errorMessage}}</div>
+}
+
+<!--Display filtered data select type and term search -->
+@if(searchResults.length > 0){
+<div class="search-results">
+    <h4>Search Results By: {{selectedTerms}}</h4>
+    <cdk-virtual-scroll-viewport class="list-container list-group" [itemSize]="100.5">
+        <div *cdkVirtualFor="let poem of searchResults;" class="list-group-item">
+            {{poem}}
+        </div>
+    </cdk-virtual-scroll-viewport>
+    @for(poem of searchResults; track poem){
+    <mat-accordion class="example-headers-align">
+
+        <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+            <mat-expansion-panel-header matTooltip="Expand to view the poem">
+                <mat-panel-title>Author: {{poem.author}}</mat-panel-title>
+                <mat-panel-description>
+                    Title: {{poem.title}}
+                    <!-- {{panelOpenState() ? 'open' : 'closed'}} -->
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Poem : {{poem.lines}}</p>
+            <h6>Line Count : {{poem.linecount}}</h6>
+        </mat-expansion-panel>
+    </mat-accordion>
+    }
+</div>
+}

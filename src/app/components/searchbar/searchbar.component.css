@@ -1,0 +1,49 @@
+.type {
+    width: 500px;
+    margin-top: 10px;  
+    margin-left: 500px; 
+    /* border-radius: 5px; */
+  }
+ 
+  mat-option{
+    background-color: beige !important;
+  }
+  .term{
+    width: 480px;
+    border: 1px solid rgba(0, 0, 0, 0.275);
+    border-radius: 5px;
+    background-color: aliceblue;
+  }
+
+mat-label{
+    margin-top: 10px;
+    font-size: 15px;
+}
+  .mat-mdc-form-field-focus-overlay{
+    color: black !important; 
+    background-color: aliceblue !important;
+}
+  .primary{
+    width: 50px;
+    height: 55px;
+    /* margin-top: 5px; */
+    padding-top: 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: rgb(0, 76, 255);
+  }
+  .primary:hover{
+    background-color:honeydew;
+  }
+  mat-icon{
+    /* padding-top: 7px; */
+    color: black;
+  }
+  h6{
+    font-size: 12px;
+  }
+  h4{
+    font-size: 15px;
+  }
+
+ 
